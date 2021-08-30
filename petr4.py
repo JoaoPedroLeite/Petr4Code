@@ -58,7 +58,6 @@ def variacao(x,y):
     
 
 
-
 #schedule.every(5).seconds.do(cotacaopetr4)
 #schedule.every(10).minutes.at("10:00").until("13:00").do(cotacaopetr4)
 
@@ -82,24 +81,8 @@ while True:
     novoCotacao = c_cotacao
     
 
-
-
    
     time.sleep(10)
-
-
-
-
-
-
-
-
-
-
-
-
-# link do video sched
-#https://www.youtube.com/watch?v=FjJ1bClIa-o&ab_channel=EduardoMendes
 
 
 #blocoInfo = json.loads(response.text)
@@ -107,7 +90,6 @@ while True:
 #print('\n O ip da minha rede é: ' + blocoInfo["ip"] +'\n')
 
 #print('\n Você está conectado em ' + blocoInfo["city"] +  ' no estado de ' +blocoInfo["region"] + '\n')
-
 
 
 
