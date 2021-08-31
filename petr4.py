@@ -40,20 +40,21 @@ def cotacaopetr4():
 
 def variacao(x,y):
 
-    # x = int(input('x:'))
-    # y = int(input('y:'))
-
-
     if(x > y):
         print('diminuiu: ')
+        variacaoStatus = (f'desvalorização de {((x - y) * 100) / x}%')
         print(((x - y) * 100) / x)        # desconto
 
     elif(y > x):
         print('aumentou: ')
+        variacaoStatus = (f'valorização de {((y - x) * 100) / x}%')
         print(((y - x) * 100) / x)        # aumento
     
     elif(x==y):
         print('sem variacao')
+        variacaoStatus = 'variação de 0%'
+
+    return variacaoStatus
 
     
 
@@ -72,17 +73,25 @@ while True:
 
     c_cotacao = cotacaopetr4()
 
-    variacao(novoCotacao,c_cotacao)
+    #variacao(novoCotacao,c_cotacao)
 
-    print('\n [PETR4] Valor atual %.2f, <valorização OU desvalorização> de <porcentagem da variação em relação ao valor anterior>   \n' %(c_cotacao))
+    variacaoStatus = variacao(novoCotacao,c_cotacao)
 
-    logger.info(' [PETR4] Valor atual %.2f, <valorização OU desvalorização> de <porcentagem da variação em relação ao valor anterior>   \n' %(c_cotacao))
+    print(f'\n [PETR4] Valor atual {c_cotacao}, {variacaoStatus}  \n')
+
+    #logger.info(' [PETR4] Valor atual %.2f, <valorização OU desvalorização> de <porcentagem da variação em relação ao valor anterior>   \n' %(c_cotacao))
+
+    logger.info(f'[PETR4] Valor atual {c_cotacao}, {variacaoStatus}  \n')
 
     novoCotacao = c_cotacao
     
 
    
-    time.sleep(10)
+    time.sleep(30)
+
+
+
+#----------CODIGOS QUE POSSAM SER UTEIS-----------------
 
 
 #blocoInfo = json.loads(response.text)
@@ -90,8 +99,6 @@ while True:
 #print('\n O ip da minha rede é: ' + blocoInfo["ip"] +'\n')
 
 #print('\n Você está conectado em ' + blocoInfo["city"] +  ' no estado de ' +blocoInfo["region"] + '\n')
-
-
 
 #headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36' }
 
