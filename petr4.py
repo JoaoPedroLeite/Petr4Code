@@ -56,13 +56,37 @@ def variacao(x,y):
 
     return variacaoStatus
 
+def variacaoFinal(x,y):
+
+    if(x > y):
+        
+        print(f'[PETR4] Variação da ação no dia de {((x - y) * 100) / x}% - valor inicial: R${x} - valor final: R${y}')
+
+        logger.info(f'[PETR4] Variação da ação no dia de {((x - y) * 100) / x}% - valor inicial: R${x} - valor final: R${y}\n')
+        
+
+    elif(y > x):
+        
+        print(f'[PETR4] Variação da ação no dia de {((y - x) * 100) / x}% - valor inicial: R${x} - valor final: R${y}')
+        logger.info(f'[PETR4] Variação da ação no dia de {((y - x) * 100) / x}% - valor inicial: R${x} - valor final: R${y}\n')
+        
     
+    elif(x==y):
+
+        print(f'[PETR4] Variação da ação no dia de 0% - valor inicial: R${x} - valor final: R${y}')
+        logger.info(f'[PETR4] Variação da ação no dia de 0% - valor inicial: R${x} - valor final: R${y}\n')
+        
+
+    return variacaoStatus    
 
 
 #schedule.every(5).seconds.do(cotacaopetr4)
 #schedule.every(10).minutes.at("10:00").until("13:00").do(cotacaopetr4)
 
 novoCotacao = cotacaopetr4()
+cont = 0
+primeraCotacao = 0
+ultimaCotacao = 0
 
 while True:
    # schedule.run_pending()
@@ -84,10 +108,28 @@ while True:
     logger.info(f'[PETR4] Valor atual {c_cotacao}, {variacaoStatus}  \n')
 
     novoCotacao = c_cotacao
+
+    cont = cont + 1
+
+    if (cont == 1): primeraCotacao = c_cotacao
+
+    #LEMBRAR DE MUDAR ESSE IF PARA CADA TESTE
+
+    if (cont == 24): 
+        
+        ultimaCotacao = c_cotacao
+
+        variacaoFinal(primeraCotacao,ultimaCotacao)
+
+
+
+    # o codigo ira executar por 4 horas(14400 segundos), o laço é executado com intervalo de 10 minutos(600 segundos), ou sejá 24 vezes.
+    
+    if (cont == 24): break
     
 
    
-    time.sleep(30)
+    time.sleep(10)
 
 
 
